@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Роман Христофоров - Frontend Developer</title>
+    <title>Roman Khristophorov - Frontend Developer</title>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -242,12 +242,10 @@
 
         .download-btn:hover {
             background: var(--primary-color);
-            transform: scale(1.05);
         }
 
         .download-btn:active {
             background: var(--secondary-color);
-            transform: scale(1);
         }
 
         .language-switcher {
@@ -270,25 +268,33 @@
         }
 
         @media (max-width: 768px) {
+            .section {
+                margin-top: 30px;
+            }
             .language-switcher {
                 position: relative;
-                left: 280px;
+                left: 295px;
                 top: 65px;
                 width: 30px;
                 height: 20px;
             }
-
+            .container-btn {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                position: relative;
+                height: 0;
+                width: 100%;
+            }
             .download-btn {
                 position: relative;
-                display: block;
-                top: 260px;
-                left: -60px;
-                width: 100px;
+                left: 0;
+                width: 100%;
+                margin-top: 90px;
+                padding: 13px 0;
+                font-size: .85em;
                 text-align: center;
-                font-size: 0.65em;
-                padding: 5px;
             }
-
             .hidden {
                 display: none;
             }
@@ -318,10 +324,10 @@
     <div id="switcher" class="language-switcher hidden">
         <button id="ruBtn" class="ru-btn" onclick="changeLang('ru')">🇷🇺</button>
         <button id="enBtn" class="en-btn hidden" onclick="changeLang('en')">🇬🇧</button>
-
+    </div>
+    <div id="btnPdf" class="container-btn hidden">
         <button id="downloadPdf" class="download-btn"></button>
     </div>
-
     <div id="content"></div>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
@@ -356,6 +362,7 @@
     const res = await fetch(`content-${lang}.html`);
     document.getElementById('content').innerHTML = await res.text();
     document.getElementById('switcher').classList.remove('hidden');
+    document.getElementById('btnPdf').classList.remove('hidden');
   }
 
   fetchContent(lang);
